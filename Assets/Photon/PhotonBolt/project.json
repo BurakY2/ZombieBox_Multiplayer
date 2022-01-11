@@ -345,6 +345,30 @@
       "Name": "BulletState",
       "Guid": "8a79785f-7dae-46b1-a54a-f717e1773dba",
       "Groups": []
+    },
+    {
+      "$type": "Photon.Bolt.Compiler.EventDefinition, bolt.compiler",
+      "Properties": [
+        {
+          "Name": "Message",
+          "Enabled": true,
+          "Expanded": true,
+          "ReplicationMode": 1,
+          "Priority": 1,
+          "PropertyType": {
+            "$type": "Photon.Bolt.Compiler.PropertyTypeString, bolt.compiler",
+            "MaxLength": 1
+          },
+          "AssetSettings": {
+            "$type": "Photon.Bolt.Compiler.PropertyEventSettings, bolt.compiler"
+          }
+        }
+      ],
+      "EntitySenders": 3,
+      "GlobalSenders": 1,
+      "Name": "PlayerJoinedEvent",
+      "Guid": "cb719a4e-7a6c-4d66-905f-d37a4e95ad3d",
+      "Groups": []
     }
   ],
   "ActiveGroup": "Everything"

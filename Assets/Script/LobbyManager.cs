@@ -15,6 +15,23 @@ public class LobbyManager : GlobalEventListener
     public float buttonSpacing;
     private List<Button> joinServerButtons = new List<Button>();
 
+
+    public void Start()
+    {
+        Debug.Log("Asıl " + PlayerPrefs.GetString("username"));
+        setUsernamePanel.SetActive(true);
+        
+    }
+
+    public void OnSetUsernameValueChange(string input)
+    {
+        print(input);
+        PlayerPrefs.SetString("username", input);
+        Debug.Log("Asıl " + PlayerPrefs.GetString("username"));
+    }
+
+
+
     public void StartServer()
     {
         BoltLauncher.StartServer();
