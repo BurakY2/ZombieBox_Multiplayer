@@ -12,9 +12,10 @@ public class Bullet : Photon.Bolt.EntityBehaviour<IBulletState>
     }
     private void OnCollisionEnter(Collision col)
     {
-        if (col.collider.tag == "Player")
+        if (col.collider.tag == "Zombie" || col.collider.tag == "Wall")
         {
             Destroy(gameObject);
+            //BoltNetwork.Destroy(this.gameObject);
         }
 
 
