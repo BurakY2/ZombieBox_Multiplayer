@@ -7,6 +7,9 @@ TagManager:
   - BulletTrig
   - Zombie
   - Pool
+  - DeathCanvas
+  - NormalCanvas
+  - Lose
   layers:
   - Default
   - TransparentFX

@@ -7,59 +7,68 @@ using TMPro;
 public class PlayerHealth : Photon.Bolt.EntityBehaviour<IPlayerState>
 {
     public int localHealth ;
-   // public TextMeshProUGUI HealthPanel;
+    public TextMeshProUGUI HealthPanel;
+   
+    
+
+
 
     public override void Attached()
     {
-        //HealthPanel.enabled = false;
+        HealthPanel.enabled = false;
         state.Health = localHealth;
-                    
-       state.AddCallback("Health" , HealthCallBack);
-        
+        state.AddCallback("Health", HealthCallBack);
        
+
     }
+
+
+    public override void SimulateOwner()
+    {
+        
+        
+    }
+
 
     private void HealthCallBack()
     {
+        
         localHealth=state.Health;
+        /*
         if (state.Health <= 0)
         {
             BoltNetwork.Destroy(gameObject); 
         }
-    }
-    /*
-    public override void SimulateOwner()
-    {
+        */
+
         if (entity.IsOwner)
         {
             HealthPanel.enabled = true;
-            var evnt = PlayerAmmo.Create();
+            var evnt = PlayerHealthEvent.Create();
+            var gameoverevent = GameOverEvent.Create();
             if (state.Health > 0)
             {
-                evnt.Ammo = "Ammo: " + (state.Health.ToString());
+                evnt.HealthMsg = "Health: " + (state.Health.ToString());
                 evnt.Send();
-                HealthPanel.text = evnt.Ammo;
+                HealthPanel.text = evnt.HealthMsg;
 
             }
             if (state.Health <= 0)
             {
-                evnt.Ammo = "Ammo: 0";
+                
+                evnt.HealthMsg = "Health: 0";
                 evnt.Send();
-                HealthPanel.text = evnt.Ammo;
+                HealthPanel.text = evnt.HealthMsg;
+                gameoverevent.Lose = true;
+                gameoverevent.Send();
+
+                BoltNetwork.Destroy(gameObject);
 
             }
         }
+
     }
-    */
-
-
-
-
-
-    IEnumerator ExampleCoroutine()
-    {
-        yield return new WaitForSeconds(10);
-    }
+    
 
 
     private void OnTriggerEnter(Collider col)
@@ -68,9 +77,13 @@ public class PlayerHealth : Photon.Bolt.EntityBehaviour<IPlayerState>
         if (col.gameObject.CompareTag("Zombie"))
         {
             
-            Debug.Log("ölüyozzz");
+            
             state.Health -= 1;
             
+        }
+        if (col.gameObject.CompareTag("Pool"))
+        {
+            BoltNetwork.Destroy(gameObject);
         }
 
     }
