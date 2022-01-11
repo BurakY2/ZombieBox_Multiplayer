@@ -10,6 +10,7 @@ TagManager:
   - DeathCanvas
   - NormalCanvas
   - Lose
+  - Death
   layers:
   - Default
   - TransparentFX

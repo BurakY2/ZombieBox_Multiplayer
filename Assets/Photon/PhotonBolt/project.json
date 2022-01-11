@@ -606,6 +606,7 @@
           }
         }
       ],
+      "EntitySenders": 1,
       "Name": "GameOverEvent",
       "Guid": "285f56f6-71ad-4d71-aec8-a9041cd17221",
       "Groups": []

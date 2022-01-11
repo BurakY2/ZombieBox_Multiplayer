@@ -17,6 +17,7 @@ public class ZombieMovement : EntityBehaviour<IZombieState>
     
     public void Start()
     {
+        
         player = GameObject.FindGameObjectsWithTag("Player");
     }
 
@@ -29,15 +30,23 @@ public class ZombieMovement : EntityBehaviour<IZombieState>
 
     }
 
+    public void Update()
+    {
+       
+    }
 
     public override void SimulateOwner()
     {
         agent = GetComponent<NavMeshAgent>();
         Transform a = player[0].transform;
+        Debug.Log("player0: "+a.position.x);
         Transform b = player[1].transform;
-        if (a.position.x > b.position.x)
+        Debug.Log("player1: "+b.position.x);
+
+
+        if (a.position.x > b.position.x && !player[0].CompareTag("Death") && !player[1].CompareTag("Death"))
         {
-            if (a.position.y > b.position.y)
+            if (a.position.y > b.position.y && !player[0].CompareTag("Death") && !player[1].CompareTag("Death"))
             {
                 agent.destination = player[1].transform.position;
             }
@@ -49,24 +58,25 @@ public class ZombieMovement : EntityBehaviour<IZombieState>
         }
         else
         {
-            if (a.position.y < b.position.y)
+            if (a.position.y < b.position.y && !player[0].CompareTag("Death") && !player[1].CompareTag("Death"))
             {
                 agent.destination = player[0].transform.position;
             }
-            if (a.position.y > b.position.y)
+            if (a.position.y > b.position.y && !player[0].CompareTag("Death") && !player[1].CompareTag("Death"))
             {
                 agent.destination = player[1].transform.position;
             }
-            if(player[1] == null)
+            if (player[1].CompareTag("Death") || player[1] == null)
             {
                 agent.destination = player[0].transform.position;
             }
-            if (player[0] == null)
+            if (player[0].CompareTag("Death") || player[2] == null)
             {
                 agent.destination = player[1].transform.position;
             }
 
         }
+
 
     }
 }

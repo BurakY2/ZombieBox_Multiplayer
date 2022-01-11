@@ -23,9 +23,6 @@ public class Shooting : Photon.Bolt.EntityBehaviour<IPlayerState>
         state.OnShooting = aim;
         AmmoPanel.enabled = false;
 
-
-
-
     }
     public override void SimulateOwner()
     {

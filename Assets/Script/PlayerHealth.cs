@@ -8,8 +8,11 @@ public class PlayerHealth : Photon.Bolt.EntityBehaviour<IPlayerState>
 {
     public int localHealth ;
     public TextMeshProUGUI HealthPanel;
-   
-    
+    public GameObject canvas;
+    public TextMeshProUGUI winnerPopup;
+    public CharacterController a;
+
+
 
 
 
@@ -52,30 +55,30 @@ public class PlayerHealth : Photon.Bolt.EntityBehaviour<IPlayerState>
                 evnt.Send();
                 HealthPanel.text = evnt.HealthMsg;
 
+                
+
             }
             if(state.Health == 0)
             {
-                evnt.HealthMsg = "Health: 0";
-                HealthPanel.text = evnt.HealthMsg;
                 HealthPanel.enabled = false;
-                evnt.Send();
-                
-                gameoverevent.Lose = true;
-                gameoverevent.Send();
-
-            }
-            if (state.Health <= -1)
-            {
-                
+                losepanel();
+                a.enabled = false;
+                this.gameObject.tag = "Death";
+                /*
                 evnt.HealthMsg = "Health: 0";
-                evnt.Send();
                 HealthPanel.text = evnt.HealthMsg;
+                
+                evnt.Send();
+                
                 gameoverevent.Lose = true;
                 gameoverevent.Send();
+                */
 
-                BoltNetwork.Destroy(gameObject);
+                //BoltNetwork.Destroy(player.GetComponent<PlayerMove>());
+                Debug.Log("oLDUN");
 
             }
+           
         }
 
     }
@@ -91,6 +94,7 @@ public class PlayerHealth : Photon.Bolt.EntityBehaviour<IPlayerState>
             
             state.Health -= 1;
             
+
         }
         if (col.gameObject.CompareTag("Pool"))
         {
@@ -99,6 +103,16 @@ public class PlayerHealth : Photon.Bolt.EntityBehaviour<IPlayerState>
 
     }
 
+
+    public void losepanel()
+    {
+        TextMeshProUGUI winnerPopupClone = Instantiate(winnerPopup);
+        winnerPopupClone.text = "You Dead";
+        winnerPopupClone.transform.SetParent(canvas.transform);
+        winnerPopupClone.GetComponent<RectTransform>().sizeDelta = winnerPopup.GetComponent<RectTransform>().sizeDelta;
+        winnerPopupClone.GetComponent<RectTransform>().localScale = winnerPopup.GetComponent<RectTransform>().localScale;
+        winnerPopupClone.GetComponent<RectTransform>().position = winnerPopup.GetComponent<RectTransform>().position;
+    }
    
    
 }

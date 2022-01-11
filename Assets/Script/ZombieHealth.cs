@@ -34,6 +34,7 @@ public class ZombieHealth : Photon.Bolt.EntityBehaviour<IZombieState>
         }
     }
 
+   
     private void OnCollisionEnter(Collision col)
     {
         if (col.collider.tag == "BulletTrig")
@@ -42,5 +43,8 @@ public class ZombieHealth : Photon.Bolt.EntityBehaviour<IZombieState>
             healthBar.SetHealth(localHealth);
         }
     }
+   
+
     
+
 }
