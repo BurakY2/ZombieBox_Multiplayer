@@ -369,6 +369,29 @@
       "Name": "PlayerJoinedEvent",
       "Guid": "cb719a4e-7a6c-4d66-905f-d37a4e95ad3d",
       "Groups": []
+    },
+    {
+      "$type": "Photon.Bolt.Compiler.EventDefinition, bolt.compiler",
+      "Properties": [
+        {
+          "Name": "Ammo",
+          "Enabled": true,
+          "Expanded": true,
+          "ReplicationMode": 1,
+          "Priority": 1,
+          "PropertyType": {
+            "$type": "Photon.Bolt.Compiler.PropertyTypeString, bolt.compiler",
+            "MaxLength": 64
+          },
+          "AssetSettings": {
+            "$type": "Photon.Bolt.Compiler.PropertyEventSettings, bolt.compiler"
+          }
+        }
+      ],
+      "EntitySenders": 1,
+      "Name": "PlayerAmmo",
+      "Guid": "d9f9e3ec-8cff-431a-a27b-5fe3abb41ff5",
+      "Groups": []
     }
   ],
   "ActiveGroup": "Everything"

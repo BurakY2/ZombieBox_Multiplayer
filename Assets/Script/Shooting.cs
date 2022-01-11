@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using Photon.Bolt;
 using UnityEngine;
+using TMPro;
 
 public class Shooting : Photon.Bolt.EntityBehaviour<IPlayerState>
 {
+    
     public Camera camera;
     public GameObject projectile;
     private Vector3 destination;
@@ -12,28 +14,65 @@ public class Shooting : Photon.Bolt.EntityBehaviour<IPlayerState>
     public int ammo ;
     public float projectileSpeed ;
     private bool isReloading = false;
+    public TextMeshProUGUI AmmoPanel;
+
 
     public override void Attached()
     {
+        
         state.OnShooting = aim;
+        AmmoPanel.enabled = false;
+
+
+
+
+    }
+    public override void SimulateOwner()
+    {
+        if (entity.IsOwner)
+        {
+            AmmoPanel.enabled = true;
+            var evnt = PlayerAmmo.Create();
+            if (ammo > 0)
+            {
+                evnt.Ammo = (ammo.ToString());
+                evnt.Send();
+                AmmoPanel.text = evnt.Ammo;
+
+            }
+            if (ammo <= 0)
+            {
+                evnt.Ammo = "0";
+                evnt.Send();
+                AmmoPanel.text = evnt.Ammo;
+
+            }
+        }
     }
 
     void Update()
     {
+
+        
+
+       
+        
         if (isReloading)
         {
             return;
         }
         if(ammo<=0)
         {
-            StartCoroutine(reload());
-            ammo = 3;
+            ammo = 0;
+            StartCoroutine(reload()); 
+            
         }
 
         if (ammo > 0)
         {
             if(Input.GetButtonDown("Fire1") && entity.IsOwner)
             {
+                
                 ammo--;
                 state.Shooting();
             }
@@ -46,6 +85,7 @@ public class Shooting : Photon.Bolt.EntityBehaviour<IPlayerState>
         isReloading = true;
         Debug.Log("reloading");
         yield return new WaitForSeconds(1f);
+        ammo = 3;
         isReloading = false;
     }
 
@@ -68,5 +108,14 @@ public class Shooting : Photon.Bolt.EntityBehaviour<IPlayerState>
     {
         var projectileObj = Instantiate(projectile,firePoint.position,Quaternion.identity) as GameObject;
         projectileObj.GetComponent<Rigidbody>().velocity = (target - firePoint.position).normalized * projectileSpeed;
+    }
+
+
+    public void AmmoPanelText()
+    {
+        
+        
+       
+    
     }
 }
