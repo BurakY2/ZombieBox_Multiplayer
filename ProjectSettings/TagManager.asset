@@ -6,6 +6,7 @@ TagManager:
   tags:
   - BulletTrig
   - Zombie
+  - Pool
   layers:
   - Default
   - TransparentFX

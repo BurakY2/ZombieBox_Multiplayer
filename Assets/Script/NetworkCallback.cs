@@ -5,8 +5,8 @@ using Photon.Bolt;
 
 public class NetworkCallback : GlobalEventListener
 {
-    float a = 0.395f;
-    float b = 1.41f;
+    
+    float b = 2.3871f;
     public GameObject PlayerPreFab;
     public GameObject zombiePrefab;
 
@@ -36,7 +36,7 @@ public class NetworkCallback : GlobalEventListener
 
     public override void SceneLoadLocalDone(string scene, IProtocolToken token)
     {
-        var spawnPos = new Vector3(Random.Range(30, 40), 1f, Random.Range(-58, -40));
+        var spawnPos = new Vector3(Random.Range(10, 27), 2f, Random.Range(-49, -50));
 
         if (BoltNetwork.IsServer)
         {
@@ -53,7 +53,7 @@ public class NetworkCallback : GlobalEventListener
     public void spamBots()
     {
         Debug.Log("Spam bots");
-        var spawnPos = new Vector3(Random.Range(-18, 9), b, Random.Range(13, 25));
+        var spawnPos = new Vector3(Random.Range(1, 38), b, Random.Range(40, 48));
         BoltNetwork.Instantiate(zombiePrefab, spawnPos, Quaternion.identity);
 
 

@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using Photon.Bolt;
 using UnityEngine;
+using TMPro;
 
 public class PlayerHealth : Photon.Bolt.EntityBehaviour<IPlayerState>
 {
     public int localHealth ;
+   // public TextMeshProUGUI HealthPanel;
 
     public override void Attached()
     {
-        
-             state.Health = localHealth;
+        //HealthPanel.enabled = false;
+        state.Health = localHealth;
                     
-             state.AddCallback("Health" , HealthCallBack);
+       state.AddCallback("Health" , HealthCallBack);
         
        
     }
@@ -25,15 +27,54 @@ public class PlayerHealth : Photon.Bolt.EntityBehaviour<IPlayerState>
             BoltNetwork.Destroy(gameObject); 
         }
     }
-
-   private void OnCollisionEnter(Collision col)
+    /*
+    public override void SimulateOwner()
     {
-        
-        if (col.gameObject.tag == "Zombie") 
+        if (entity.IsOwner)
         {
-            Debug.Log("ölüyozzz");
-            state.Health -= 1;
+            HealthPanel.enabled = true;
+            var evnt = PlayerAmmo.Create();
+            if (state.Health > 0)
+            {
+                evnt.Ammo = "Ammo: " + (state.Health.ToString());
+                evnt.Send();
+                HealthPanel.text = evnt.Ammo;
+
+            }
+            if (state.Health <= 0)
+            {
+                evnt.Ammo = "Ammo: 0";
+                evnt.Send();
+                HealthPanel.text = evnt.Ammo;
+
+            }
         }
     }
+    */
+
+
+
+
+
+    IEnumerator ExampleCoroutine()
+    {
+        yield return new WaitForSeconds(10);
+    }
+
+
+    private void OnTriggerEnter(Collider col)
+    {
+        
+        if (col.gameObject.CompareTag("Zombie"))
+        {
+            
+            Debug.Log("ölüyozzz");
+            state.Health -= 1;
+            
+        }
+
+    }
+
+   
    
 }

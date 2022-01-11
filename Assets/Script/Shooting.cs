@@ -35,14 +35,14 @@ public class Shooting : Photon.Bolt.EntityBehaviour<IPlayerState>
             var evnt = PlayerAmmo.Create();
             if (ammo > 0)
             {
-                evnt.Ammo = (ammo.ToString());
+                evnt.Ammo = "Ammo: " +(ammo.ToString());
                 evnt.Send();
                 AmmoPanel.text = evnt.Ammo;
 
             }
             if (ammo <= 0)
             {
-                evnt.Ammo = "0";
+                evnt.Ammo = "Ammo: 0";
                 evnt.Send();
                 AmmoPanel.text = evnt.Ammo;
 
@@ -113,9 +113,5 @@ public class Shooting : Photon.Bolt.EntityBehaviour<IPlayerState>
 
     public void AmmoPanelText()
     {
-        
-        
-       
-    
     }
 }
