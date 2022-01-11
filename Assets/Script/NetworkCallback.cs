@@ -7,6 +7,7 @@ public class NetworkCallback : GlobalEventListener
 {
     float a = 0.395f;
     public GameObject PlayerPreFab;
+    public GameObject zombiePrefab;
 
     public override void SceneLoadLocalDone(string scene, IProtocolToken token)
     {
@@ -20,6 +21,7 @@ public class NetworkCallback : GlobalEventListener
         {
             BoltNetwork.Instantiate(PlayerPreFab, spawnPos, Quaternion.identity);
         }
-        
+        BoltNetwork.Instantiate(zombiePrefab, spawnPos, Quaternion.identity);
+
     }
 }
