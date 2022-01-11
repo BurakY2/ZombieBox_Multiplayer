@@ -26,11 +26,13 @@ public class PlayerHealth : Photon.Bolt.EntityBehaviour<IPlayerState>
         }
     }
 
-    private void OnCollisionEnter(Collision col)
+   private void OnCollisionEnter(Collision col)
     {
-        if (col.collider.tag == "BulletTrig") 
+        
+        if (col.gameObject.tag == "Zombie") 
         {
-                state.Health -= 1;
+            Debug.Log("ölüyozzz");
+            state.Health -= 1;
         }
     }
    

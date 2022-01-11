@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ZombieHealth : Photon.Bolt.EntityBehaviour<IZombieState>
 {
+    
     public int localHealth;
     public HealthBarScript healthBar;
 
@@ -33,5 +34,5 @@ public class ZombieHealth : Photon.Bolt.EntityBehaviour<IZombieState>
             healthBar.SetHealth(localHealth);
         }
     }
-
+    
 }
