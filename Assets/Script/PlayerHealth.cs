@@ -53,7 +53,18 @@ public class PlayerHealth : Photon.Bolt.EntityBehaviour<IPlayerState>
                 HealthPanel.text = evnt.HealthMsg;
 
             }
-            if (state.Health <= 0)
+            if(state.Health == 0)
+            {
+                evnt.HealthMsg = "Health: 0";
+                HealthPanel.text = evnt.HealthMsg;
+                HealthPanel.enabled = false;
+                evnt.Send();
+                
+                gameoverevent.Lose = true;
+                gameoverevent.Send();
+
+            }
+            if (state.Health <= -1)
             {
                 
                 evnt.HealthMsg = "Health: 0";
