@@ -225,7 +225,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cd5b7d70326357d4daf108b3c318692a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -815,7 +815,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 758eefbcf9fe66f4e9d4962a8d15461c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -915,6 +915,9 @@ MonoBehaviour:
   canvas: {fileID: 3470053782314780065}
   winnerPopup: {fileID: 7730772282507746711}
   a: {fileID: 3102594629890090322}
+  ammopanel: {fileID: 8474046309646305}
+  rend: {fileID: 7707797553709759619}
+  arm: {fileID: 2132253098233001446}
 --- !u!114 &-8062060844507501194
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,13 +11,18 @@ public class PlayerHealth : Photon.Bolt.EntityBehaviour<IPlayerState>
     public GameObject canvas;
     public TextMeshProUGUI winnerPopup;
     public CharacterController a;
-
-
+    public TextMeshProUGUI ammopanel;
+    public Renderer rend;
+    public GameObject arm;
+   
 
 
 
     public override void Attached()
     {
+
+        state.SetTransforms(state.Arm, arm.transform);
+        rend = GetComponent<Renderer>();
         HealthPanel.enabled = false;
         state.Health = localHealth;
         state.AddCallback("Health", HealthCallBack);
@@ -64,6 +69,12 @@ public class PlayerHealth : Photon.Bolt.EntityBehaviour<IPlayerState>
                 losepanel();
                 a.enabled = false;
                 this.gameObject.tag = "Death";
+                
+                this.gameObject.GetComponent<Shooting>().enabled = false;
+                rend.enabled = false;
+                arm.SetActive(false);
+                //arm.SetActive(false);
+                Destroy(this.gameObject);
                 /*
                 evnt.HealthMsg = "Health: 0";
                 HealthPanel.text = evnt.HealthMsg;
@@ -98,7 +109,19 @@ public class PlayerHealth : Photon.Bolt.EntityBehaviour<IPlayerState>
         }
         if (col.gameObject.CompareTag("Pool"))
         {
-            BoltNetwork.Destroy(gameObject);
+            if (entity.IsOwner)
+            {
+                HealthPanel.enabled = false;
+                losepanel();
+                a.enabled = false;
+                this.gameObject.tag = "Death";
+                this.gameObject.GetComponent<Shooting>().enabled = false;
+                rend.enabled = false;
+                arm.SetActive(false);
+
+            }
+            
+            //BoltNetwork.Destroy(gameObject);
         }
 
     }

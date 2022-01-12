@@ -9,6 +9,7 @@ public class GameOver : GlobalEventListener
     public Camera MainCamera;
     public GameObject canvas;
     public TextMeshProUGUI winnerPopup;
+    
     public GameObject player2;
     public GameObject player;
 
@@ -16,10 +17,12 @@ public class GameOver : GlobalEventListener
     {
        
             Debug.Log(evnt.Lose);
-           /* if (evnt.Lose == true)
+        
+           if (evnt.Lose == true)
             {
                 TextMeshProUGUI winnerPopupClone = Instantiate(winnerPopup);
                 winnerPopupClone.text = "You Lose";
+            
                 player = GameObject.FindWithTag("Player");
                 Destroy(player);
 
@@ -29,7 +32,7 @@ public class GameOver : GlobalEventListener
                 winnerPopupClone.GetComponent<RectTransform>().localScale = winnerPopup.GetComponent<RectTransform>().localScale;
                 winnerPopupClone.GetComponent<RectTransform>().position = winnerPopup.GetComponent<RectTransform>().position;
 
-            }*/
+            }
             if (evnt.Lose == false)
             {
 
