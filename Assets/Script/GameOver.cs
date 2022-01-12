@@ -16,7 +16,7 @@ public class GameOver : GlobalEventListener
     {
        
             Debug.Log(evnt.Lose);
-            if (evnt.Lose == true)
+           /* if (evnt.Lose == true)
             {
                 TextMeshProUGUI winnerPopupClone = Instantiate(winnerPopup);
                 winnerPopupClone.text = "You Lose";
@@ -29,7 +29,7 @@ public class GameOver : GlobalEventListener
                 winnerPopupClone.GetComponent<RectTransform>().localScale = winnerPopup.GetComponent<RectTransform>().localScale;
                 winnerPopupClone.GetComponent<RectTransform>().position = winnerPopup.GetComponent<RectTransform>().position;
 
-            }
+            }*/
             if (evnt.Lose == false)
             {
 

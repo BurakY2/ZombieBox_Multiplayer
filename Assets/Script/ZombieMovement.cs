@@ -43,7 +43,7 @@ public class ZombieMovement : EntityBehaviour<IZombieState>
         Transform b = player[1].transform;
         Debug.Log("player1: "+b.position.x);
 
-
+        
         if (a.position.x > b.position.x && !player[0].CompareTag("Death") && !player[1].CompareTag("Death"))
         {
             if (a.position.y > b.position.y && !player[0].CompareTag("Death") && !player[1].CompareTag("Death"))
